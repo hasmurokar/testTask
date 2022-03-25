@@ -30,5 +30,9 @@ namespace testTask
             var s = CheckedValueInt();
             return new Square(s);
         }
+        public override string ToString()
+        {
+            return $"Квадрат: сторона = {Side}";
+        }
     }
 }

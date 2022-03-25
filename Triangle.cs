@@ -39,5 +39,10 @@ namespace testTask
             var sideC = CheckedValueInt();
             return new Triangle(sideA, sideB, sideC);
         }
+
+        public override string ToString()
+        {
+            return $"Треугольник: a = {SideA}, b = {SideB}, c = {SideC}";
+        }
     }
 }

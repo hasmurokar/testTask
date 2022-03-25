@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace testTask
 {
@@ -12,7 +14,7 @@ namespace testTask
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Добавить: квадрат(S), прямоугольник(R), треугольник(T), круг(C)\nПодсчитать площадь и периметр(F), Выход(esc)");
+                Console.WriteLine("Добавить: квадрат(S), прямоугольник(R), треугольник(T), круг(C)\nПодсчитать площадь и периметр(F), Сохранить(U), Выход(esc)");
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.S:
@@ -29,6 +31,10 @@ namespace testTask
                         break;
                     case ConsoleKey.F:
                         GetPerimetrAndArea(shapeList);
+                        break;
+                    case ConsoleKey.U:
+                        Console.WriteLine();
+                        SaveShapes(shapeList);
                         break;
                     case ConsoleKey.Escape:
                         flag = false;
@@ -55,5 +61,30 @@ namespace testTask
             Console.WriteLine();
         }
 
+        public static void SaveShapes(List<Shape> list)
+        {
+            bool flag = true;
+            while (flag)
+            {
+                Console.WriteLine("Введите путь:");
+                var filePath = @"" + Console.ReadLine();
+                if (Directory.Exists(filePath))
+                {
+                    using (TextWriter tw = new StreamWriter(filePath + "‪testFile.txt", true))
+                    {
+                        foreach (var item in list)
+                        {
+                            tw.WriteLine(item);
+                        }
+                    }
+                    flag = false;
+                }
+                else
+                {
+                    Console.WriteLine("Путь указан неверно");
+                }
+            }                
+        }
     }
 }
+

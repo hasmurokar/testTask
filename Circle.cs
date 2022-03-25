@@ -31,5 +31,10 @@ namespace testTask
             var radius = CheckedValueInt();
             return new Circle(radius);
         }
+
+        public override string ToString()
+        {
+            return $"Круг: радиус = {Radius}";
+        }
     }
 }

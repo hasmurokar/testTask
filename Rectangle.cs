@@ -34,5 +34,10 @@ namespace testTask
             var height = CheckedValueInt();
             return new Rectangle(width, height);
         }
+
+        public override string ToString()
+        {
+            return $"Прямоугольник: ширина = {Width}, высота = {Height}";
+        }
     }
 }
