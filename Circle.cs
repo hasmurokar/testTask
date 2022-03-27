@@ -34,7 +34,7 @@ namespace testTask
 
         public override string ToString()
         {
-            return $"Круг: радиус = {Radius}";
+            return $"Круг: r = {Radius}";
         }
     }
 }

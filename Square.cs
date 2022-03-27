@@ -32,7 +32,7 @@ namespace testTask
         }
         public override string ToString()
         {
-            return $"Квадрат: сторона = {Side}";
+            return $"Квадрат: a = {Side}";
         }
     }
 }

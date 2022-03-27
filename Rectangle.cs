@@ -37,7 +37,7 @@ namespace testTask
 
         public override string ToString()
         {
-            return $"Прямоугольник: ширина = {Width}, высота = {Height}";
+            return $"Прямоугольник: a = {Width}, b = {Height}";
         }
     }
 }
