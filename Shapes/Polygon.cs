@@ -21,6 +21,7 @@ namespace testTask.Shapes
                 if (i == Vertexes.Count - 1)
                 {
                     array[i] = Math.Sqrt((Vertexes[0].X - Vertexes[i].X) + (Vertexes[0].Y - Vertexes[i].Y));
+                    continue;
                 }
                 array[i] = Math.Sqrt((Vertexes[i + 1].X - Vertexes[i].X) + (Vertexes[i + 1].Y - Vertexes[i].Y));
             }
@@ -31,7 +32,7 @@ namespace testTask.Shapes
         {
             var arrayFirst = new double[Vertexes.Count];
             var arraySecond = new double[Vertexes.Count];
-            for (int i = 0; i < Vertexes.Count; i++)
+            for (int i = 0; i < Vertexes.Count - 1; i++)
             {
                 arrayFirst[i] = (Vertexes[i].X * Vertexes[i + 1].Y);
                 arraySecond[i] = (Vertexes[i].Y * Vertexes[i + 1].X);
@@ -58,9 +59,9 @@ namespace testTask.Shapes
         public static Polygon CreatePolygon(List<int> values)
         {
             var list = new List<Vertex>();
-            for (int i = 0; i < values.Count; i += 3)
+            for (int i = 0; i < values.Count - 1; i += 2)
             {
-                list.Add(new Vertex(values[i],values[i + 1]));
+                list.Add(new Vertex(values[i], values[i + 1]));
             }
             return new Polygon(list);
         }

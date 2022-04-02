@@ -34,6 +34,7 @@ namespace testTask
                         shapeList.Add(Circle.InputCircle());
                         break;
                     case ConsoleKey.F:
+                        Console.WriteLine();
                         TotalPerimetr();
                         TotalArea();
                         break;
@@ -65,7 +66,7 @@ namespace testTask
         }
         private static void SaveFile()
         {
-            using (var tw = new StreamWriter(InputPath() + "‪testFile.txt", true))
+            using (var tw = new StreamWriter(InputPath() + "testFile.txt", true))
             {
                 foreach (var item in shapeList)
                 {
