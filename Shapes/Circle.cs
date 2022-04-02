@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testTask
 {
@@ -28,8 +25,13 @@ namespace testTask
         public static Circle InputCircle()
         {
             Console.WriteLine("\nВведите радиус:");
-            var radius = CheckedValueInt();
+            var radius = ValidParseData.CheckedValueInt();
             return new Circle(radius);
+        }
+
+        public static Circle CreateCircle(List<int> values)
+        {
+            return new Circle(values[0]);
         }
 
         public override string ToString()

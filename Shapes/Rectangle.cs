@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testTask
 {
@@ -28,11 +25,20 @@ namespace testTask
         }
         public static Rectangle InputRectangle()
         {
-            Console.WriteLine("\nВведите ширину:");
-            var width = CheckedValueInt();
-            Console.WriteLine("Введите высоту:");
-            var height = CheckedValueInt();
-            return new Rectangle(width, height);
+            while (true)
+            {
+                Console.WriteLine("\nВведите ширину:");
+                var width = ValidParseData.CheckedValueInt();
+                Console.WriteLine("Введите высоту:");
+                var height = ValidParseData.CheckedValueInt();
+                if (width != height) { return new Rectangle(width, height); }
+                Console.WriteLine("Ширина не может быть равна высоте");
+            }
+        }
+
+        public static Rectangle CreateRectangle(List<int> values)
+        {
+            return new Rectangle(values[0], values[1]);
         }
 
         public override string ToString()

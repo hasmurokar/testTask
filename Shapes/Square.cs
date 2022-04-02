@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testTask
 {
@@ -27,8 +24,12 @@ namespace testTask
         public static Square InputSquare()
         {
             Console.WriteLine("\nВведите значение стороны:");
-            var s = CheckedValueInt();
+            var s = ValidParseData.CheckedValueInt();
             return new Square(s);
+        }
+        public static Square CreateSquare(List<int> values)
+        {
+            return new Square(values[0]);
         }
         public override string ToString()
         {

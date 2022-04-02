@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace testTask
 {
-    abstract class Shape
+    public static class ValidParseData
     {
-        public abstract double GetPerimetr();
-        public abstract double GetArea();
-
         public static int CheckedValueInt()
         {
             string value;
