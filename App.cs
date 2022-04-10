@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using testTask.Shapes;
 
@@ -8,13 +7,15 @@ namespace testTask
 {
     class App
     {
-        public static List<Shape> shapeList = new();
-
-        public static void Run()
+        private List<Shape> shapeList = new();
+        /// <summary>
+        /// Запуск приложения
+        /// </summary>
+        public void Run()
         {
             while (true)
             {
-                Console.WriteLine("Добавить: квадрат(S), прямоугольник(R), треугольник(T), круг(C), пятиугольник(А)\nПодсчитать площадь и периметр(F), Сохранить(U), Выход(esc)\nЗагрузить файл(О)");
+                Console.WriteLine("Добавить: квадрат(S), прямоугольник(R), треугольник(T), круг(C), многоугольник(А)\nПодсчитать площадь и периметр(F), Сохранить(U), Вывод фигур(Z), Выход(esc)\nЗагрузить файл(О)");
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.S:
@@ -35,16 +36,19 @@ namespace testTask
                         break;
                     case ConsoleKey.F:
                         Console.WriteLine();
-                        TotalPerimetr();
-                        TotalArea();
+                        PerimetrAndArea();
                         break;
                     case ConsoleKey.U:
                         Console.WriteLine();
-                        SaveFile();
+                        FileManager.SaveFile(shapeList);
                         break;
                     case ConsoleKey.O:
                         Console.WriteLine();
-                        LoadFile();
+                        FileManager.LoadFile(shapeList);
+                        break;
+                    case ConsoleKey.Z:
+                        Console.WriteLine();
+                        OutputShapes();
                         break;
                     case ConsoleKey.Escape:
                         return;
@@ -55,109 +59,72 @@ namespace testTask
             }
 
         }
-        private static void TotalPerimetr()
+        /// <summary>
+        /// Осуществляет выбор фигуры и выводит площадь и периметр выбранной фигуры
+        /// </summary>
+        private void PerimetrAndArea()
         {
-            Console.WriteLine("Периметр: " + shapeList.Sum(x => x.GetPerimetr()));
-        }
-
-        private static void TotalArea()
-        {
-            Console.WriteLine("Площадь: " + shapeList.Sum(x => x.GetArea()));
-        }
-        private static void SaveFile()
-        {
-            using (var tw = new StreamWriter(InputPath() + "testFile.txt", true))
+            Console.WriteLine("Введите цифру: 1 - Квадрат, 2 - Прямоугольник, 3 - Треугольник, 4 - Круг, 5 - Многоугольник, 6 - Общая");
+            switch (Console.ReadKey().Key)
             {
-                foreach (var item in shapeList)
-                {
-                    tw.WriteLine(item);
-                }
+                case ConsoleKey.D1:
+                    TotalPerimetr<Square>();
+                    TotalArea<Square>();
+                    break;
+                case ConsoleKey.D2:
+                    TotalPerimetr<Rectangle>();
+                    TotalArea<Rectangle>();
+                    break;
+                case ConsoleKey.D3:
+                    TotalPerimetr<Triangle>();
+                    TotalArea<Triangle>();
+                    break;
+                case ConsoleKey.D4:
+                    TotalPerimetr<Circle>();
+                    TotalArea<Circle>();
+                    break;
+                case ConsoleKey.D5:
+                    TotalPerimetr<Polygon>();
+                    TotalArea<Polygon>();
+                    break;
+                case ConsoleKey.D6:
+                    TotalPerimetr<Shape>();
+                    TotalArea<Shape>();
+                    break;
+                default:
+                    Console.WriteLine("\nВы ввели неверную букву.");
+                    break;
             }
         }
-
-        private static void LoadFile()
+        /// <summary>
+        /// Подсчитывает общий периметр всех фигур по типу
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private void TotalPerimetr<T>()
+            where T : Shape
         {
-            shapeList.Clear();
-            using (var sr = new StreamReader(InputPath() + "testFile.txt"))
-            {
-                while (true)
-                {
-                    var line = sr.ReadLine();
-                    var typeShape = line?.Split(' ')[0];
-                    if (line == null) break;
-                    switch (typeShape)
-                    {
-                        case "Квадрат:":
-                            shapeList.Add(Square.CreateSquare(ConvertToValues(line)));
-                            break;
-                        case "Прямоугольник:":
-                            shapeList.Add(Rectangle.CreateRectangle(ConvertToValues(line)));
-                            break;
-                        case "Треугольник:":
-                            shapeList.Add(Triangle.CreateTriangle(ConvertToValues(line)));
-                            break;
-                        case "Многоугольник:":
-                            shapeList.Add(Polygon.CreatePolygon(ConvertToValues(line)));
-                            break;
-                        case "Круг:":
-                            shapeList.Add(Circle.CreateCircle(ConvertToValues(line)));
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            OutputShapes();
+            Console.WriteLine("\nПериметр: " + Math.Round(shapeList.Where(x => x is T).Sum(x => x.GetPerimetr())),2);
         }
-
-        private static void OutputShapes()
+        /// <summary>
+        /// Подсчитывает общую площадь всех фигур по типу
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private void TotalArea<T>()
+            where T : Shape
         {
-            foreach (var item in shapeList)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine("Площадь: " + Math.Round(shapeList.Where(x => x is T).Sum(x => x.GetArea())),2);
         }
-
-        private static string InputPath()
+        /// <summary>
+        /// Вывод списка фигур
+        /// </summary>
+        private void OutputShapes()
         {
-            Console.WriteLine("Введите путь:");
-            var filePath = @"" + Console.ReadLine();
-            if (Directory.Exists(filePath))
+            if (shapeList.Count == 0)
             {
-                return filePath;
+                Console.WriteLine("Список фигур пуст");
+                return;
             }
-            else
-            {
-                Console.WriteLine("Путь указан неверно");
-                return InputPath();
-            }
-        }
-
-        private static List<int> ConvertToValues(string line)
-        {
-            var isFillNumber = false;
-            var number = "";
-            var listValues = new List<int>();
-            for (int i = 0; i < line.Length; i++)
-            {
-                var letter = line[i].ToString();
-                if (int.TryParse(letter, out int result))
-                {
-                    isFillNumber = true;
-                    number += result.ToString();
-                    if (line.Length == i + 1) isFillNumber = false;
-                }
-                else isFillNumber = false;
-
-                var isReadyNumber = !isFillNumber && number.Length > 0;
-                if (isReadyNumber)
-                {
-                    listValues.Add(Convert.ToInt32(number));
-                    number = "";
-                    isFillNumber = true;
-                }
-            }
-            return listValues;
+            shapeList.ForEach(item => Console.WriteLine(item));
         }
     }
 }

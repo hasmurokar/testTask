@@ -16,27 +16,27 @@ namespace testTask
             SideC = sideC;
         }
 
-        public override double GetPerimetr()
+        public override double GetPerimetr() //нахождение периметра
         {
             return SideA + SideB + SideC;
         }
 
-        public override double GetArea()
+        public override double GetArea() //нахождение площади
         {
             var p = (SideA + SideB + SideC) / 2;
             return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC));
         }
 
-        public static Triangle InputTriangle()
+        public static Triangle InputTriangle() //ввод значений сторон треугольника
         {
             while (true)
             {
                 Console.WriteLine("\nВведите сторону А:");
-                var sideA = ValidParseData.CheckedValueInt();
+                var sideA = Help.CheckedValueInt();
                 Console.WriteLine("Введите сторону В:");
-                var sideB = ValidParseData.CheckedValueInt();
+                var sideB = Help.CheckedValueInt();
                 Console.WriteLine("Введите сторону С:");
-                var sideC = ValidParseData.CheckedValueInt();
+                var sideC = Help.CheckedValueInt();
                 if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA)
                 {
                     return new Triangle(sideA, sideB, sideC);
@@ -45,7 +45,7 @@ namespace testTask
             }
         }
 
-        public static Triangle CreateTriangle(List<int> values)
+        public static Triangle CreateTriangle(List<int> values) //создание треугольника по заданным значениям сторон
         {
             return new Triangle(values[0], values[1], values[2]);
         }

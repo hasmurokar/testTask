@@ -12,24 +12,24 @@ namespace testTask
             Radius = radius;
         }
 
-        public override double GetPerimetr()
+        public override double GetPerimetr() //нахождение периметра
         {
             return 2 * Radius * Math.PI;
         }
 
-        public override double GetArea()
+        public override double GetArea() //нахождение площади
         {
             return Math.Pow(Radius, 2) * Math.PI;
         }
 
-        public static Circle InputCircle()
+        public static Circle InputCircle() //ввод параметров круга
         {
             Console.WriteLine("\nВведите радиус:");
-            var radius = ValidParseData.CheckedValueInt();
+            var radius = Help.CheckedValueInt();
             return new Circle(radius);
         }
 
-        public static Circle CreateCircle(List<int> values)
+        public static Circle CreateCircle(List<int> values) //создание круга по параметрам
         {
             return new Circle(values[0]);
         }

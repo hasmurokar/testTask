@@ -1,13 +1,8 @@
 ﻿namespace testTask
 {
-    abstract class Shape
+    public abstract class Shape
     {
-        public abstract double GetPerimetr();
-        public abstract double GetArea();
-
-        public override string ToString()
-        {
-            return $"";
-        }
+        public abstract double GetPerimetr(); //абстрактный метод нахождения периметра
+        public abstract double GetArea(); //абстрактный метод нахождения площади
     }
 }

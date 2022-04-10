@@ -1,14 +1,19 @@
 ﻿namespace testTask.Shapes
 {
-    class Vertex
+    class Point
     {
         public int X { get; set; }
         public int Y { get; set; }
 
-        public Vertex(int x, int y)
+        public Point(int x, int y)
         {
             X = x;
             Y = y;
+        }
+
+        public override string ToString()
+        {
+            return $"({X};{Y})";
         }
     }
 }

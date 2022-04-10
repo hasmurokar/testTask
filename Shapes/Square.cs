@@ -12,22 +12,22 @@ namespace testTask
             Side = side;
         }
 
-        public override double GetArea()
+        public override double GetArea() //нахождение площади
         {
             return Side * Side;
         }
 
-        public override double GetPerimetr()
+        public override double GetPerimetr() //нахождение периметра
         {
             return Side * 4;
         }
-        public static Square InputSquare()
+        public static Square InputSquare() //ввод параметров квадрата
         {
             Console.WriteLine("\nВведите значение стороны:");
-            var s = ValidParseData.CheckedValueInt();
+            var s = Help.CheckedValueInt();
             return new Square(s);
         }
-        public static Square CreateSquare(List<int> values)
+        public static Square CreateSquare(List<int> values) //создание квадрата по параметрам
         {
             return new Square(values[0]);
         }

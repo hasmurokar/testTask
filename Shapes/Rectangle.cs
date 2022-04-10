@@ -14,29 +14,29 @@ namespace testTask
             Height = height;
         }
 
-        public override double GetPerimetr()
+        public override double GetPerimetr() //нахождение периметра
         {
             return (Width + Height) * 2;
         }
 
-        public override double GetArea()
+        public override double GetArea() //нахождение площади
         {
             return Width * Height;
         }
-        public static Rectangle InputRectangle()
+        public static Rectangle InputRectangle() //ввод параметров прямоугольника
         {
             while (true)
             {
                 Console.WriteLine("\nВведите ширину:");
-                var width = ValidParseData.CheckedValueInt();
+                var width = Help.CheckedValueInt();
                 Console.WriteLine("Введите высоту:");
-                var height = ValidParseData.CheckedValueInt();
+                var height = Help.CheckedValueInt();
                 if (width != height) { return new Rectangle(width, height); }
                 Console.WriteLine("Ширина не может быть равна высоте");
             }
         }
 
-        public static Rectangle CreateRectangle(List<int> values)
+        public static Rectangle CreateRectangle(List<int> values) //создние прямоугольника по параметрам
         {
             return new Rectangle(values[0], values[1]);
         }
