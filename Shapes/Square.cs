@@ -21,13 +21,22 @@ namespace testTask
         {
             return Side * 4;
         }
-        public static Square InputSquare() //ввод параметров квадрата
+        /// <summary>
+        /// ввод параметров квадрата
+        /// </summary>
+        /// <returns></returns>
+        public static Square InputSquare() //Для обращения к методу из другого класса используется static
         {
             Console.WriteLine("\nВведите значение стороны:");
             var s = Help.CheckedValueInt();
             return new Square(s);
         }
-        public static Square CreateSquare(List<int> values) //создание квадрата по параметрам
+        /// <summary>
+        /// создание квадрата по параметрам
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Square CreateSquare(List<int> values) //Для обращения к методу из другого класса используется static
         {
             return new Square(values[0]);
         }

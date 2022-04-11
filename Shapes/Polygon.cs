@@ -45,8 +45,11 @@ namespace testTask.Shapes
             }
             return area;
         }
-
-        public static Polygon InputPolygon() //ввод значений точек многоугольника
+        /// <summary>
+        /// ввод значений точек многоугольника
+        /// </summary>
+        /// <returns></returns>
+        public static Polygon InputPolygon() //Для обращения к методу из другого класса используется static
         {
             var points = new List<Point>();
             var count = InputCountPoints();
@@ -63,8 +66,12 @@ namespace testTask.Shapes
                 return new Polygon(points);
             }
         }
-
-        public static Polygon CreatePolygon(List<int> values) //создание многоугольника по заданным точкам
+        /// <summary>
+        /// создание многоугольника по заданным точкам 
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Polygon CreatePolygon(List<int> values) //Для обращения к методу из другого класса используется static
         {
             var list = new List<Point>();
             for (int i = 0; i < values.Count - 1; i += 2)
@@ -78,7 +85,7 @@ namespace testTask.Shapes
             int count;
             while (true)
             {
-                Console.WriteLine("Введите количество точек многоугольника");
+                Console.WriteLine("\nВведите количество точек многоугольника");
                 count = Help.CheckedValueInt();
                 if (count > 4) return count;
                 Console.WriteLine("В многоугольнике должно быть не менее 5 точек");

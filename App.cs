@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using testTask.Shapes;
 
 namespace testTask
 {
-    class App
+    public class App
     {
-        public static List<Shape> shapeList = new();
         /// <summary>
         /// Запуск приложения
         /// </summary>
-        public void Run()
+        public static void Run() //Для обращения к методу из другого класса используется static
         {
+            var shapeList = new List<Shape>();
             while (true)
             {
                 Console.WriteLine("Добавить: квадрат(S), прямоугольник(R), треугольник(T), круг(C), многоугольник(А)\nПодсчитать площадь и периметр(F), Сохранить(U), Вывод фигур(Z), Выход(esc)\nЗагрузить файл(О)");
@@ -28,27 +27,22 @@ namespace testTask
                         shapeList.Add(Triangle.InputTriangle());
                         break;
                     case ConsoleKey.A:
-                        Console.WriteLine();
                         shapeList.Add(Polygon.InputPolygon());
                         break;
                     case ConsoleKey.C:
                         shapeList.Add(Circle.InputCircle());
                         break;
                     case ConsoleKey.F:
-                        Console.WriteLine();
-                        ShapeManager.PerimetrAndArea();
+                        GetPerimetrAndArea(shapeList);
                         break;
                     case ConsoleKey.U:
-                        Console.WriteLine();
                         FileManager.SaveFile(shapeList);
                         break;
                     case ConsoleKey.O:
-                        Console.WriteLine();
-                        FileManager.LoadFile(shapeList);
+                        shapeList = FileManager.LoadFile();
                         break;
                     case ConsoleKey.Z:
-                        Console.WriteLine();
-                        ShapeManager.OutputShapes();
+                        OutputShapes(shapeList);
                         break;
                     case ConsoleKey.Escape:
                         return;
@@ -57,7 +51,56 @@ namespace testTask
                         break;
                 }
             }
-
+        }
+        /// <summary>
+        /// Осуществляет выбор фигуры и выводит площадь и периметр выбранной фигуры
+        /// </summary>
+        public static void GetPerimetrAndArea(List<Shape> shapeList) 
+            //В этом методе static нужен потому, что нестатические поля/методы нельзя напрямую вызвать в статических классах
+        {
+            Console.WriteLine("\nВведите цифру: 1 - Квадрат, 2 - Прямоугольник, 3 - Треугольник, 4 - Круг, 5 - Многоугольник, 6 - Общая");
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.D1:
+                    Shape.TotalPerimetr<Square>(shapeList);
+                    Shape.TotalArea<Square>(shapeList);
+                    break;
+                case ConsoleKey.D2:
+                    Shape.TotalPerimetr<Rectangle>(shapeList);
+                    Shape.TotalArea<Rectangle>(shapeList);
+                    break;
+                case ConsoleKey.D3:
+                    Shape.TotalPerimetr<Triangle>(shapeList);
+                    Shape.TotalArea<Triangle>(shapeList);
+                    break;
+                case ConsoleKey.D4:
+                    Shape.TotalPerimetr<Circle>(shapeList);
+                    Shape.TotalArea<Circle>(shapeList);
+                    break;
+                case ConsoleKey.D5:
+                    Shape.TotalPerimetr<Polygon>(shapeList);
+                    Shape.TotalArea<Polygon>(shapeList);
+                    break;
+                case ConsoleKey.D6:
+                    Shape.TotalPerimetr<Shape>(shapeList);
+                    Shape.TotalArea<Shape>(shapeList);
+                    break;
+                default:
+                    Console.WriteLine("\nВы ввели неверную букву.");
+                    break;
+            }
+        }
+        /// <summary>
+        /// Вывод списка фигур
+        /// </summary>
+        public static void OutputShapes(List<Shape> shapeList)
+        {
+            if (shapeList.Count == 0)
+            {
+                Console.WriteLine("\nСписок фигур пуст");
+                return;
+            }
+            shapeList.ForEach(item => Console.WriteLine(item));
         }
     }
 }

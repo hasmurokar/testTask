@@ -23,7 +23,11 @@ namespace testTask
         {
             return Width * Height;
         }
-        public static Rectangle InputRectangle() //ввод параметров прямоугольника
+        /// <summary>
+        /// ввод параметров прямоугольника
+        /// </summary>
+        /// <returns></returns>
+        public static Rectangle InputRectangle() //Для обращения к методу из другого класса используется static
         {
             while (true)
             {
@@ -35,8 +39,12 @@ namespace testTask
                 Console.WriteLine("Ширина не может быть равна высоте");
             }
         }
-
-        public static Rectangle CreateRectangle(List<int> values) //создние прямоугольника по параметрам
+        /// <summary>
+        /// создние прямоугольника по параметрам
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Rectangle CreateRectangle(List<int> values) //Для обращения к методу из другого класса используется static
         {
             return new Rectangle(values[0], values[1]);
         }

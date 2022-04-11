@@ -21,15 +21,22 @@ namespace testTask
         {
             return Math.Pow(Radius, 2) * Math.PI;
         }
-
-        public static Circle InputCircle() //ввод параметров круга
+        /// <summary>
+        /// ввод параметров круга
+        /// </summary>
+        /// <returns></returns>
+        public static Circle InputCircle() //Для обращения к методу из другого класса используется static
         {
             Console.WriteLine("\nВведите радиус:");
             var radius = Help.CheckedValueInt();
             return new Circle(radius);
         }
-
-        public static Circle CreateCircle(List<int> values) //создание круга по параметрам
+        /// <summary>
+        /// создание круга по параметрам
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Circle CreateCircle(List<int> values) //Для обращения к методу из другого класса используется static
         {
             return new Circle(values[0]);
         }

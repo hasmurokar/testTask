@@ -26,8 +26,11 @@ namespace testTask
             var p = (SideA + SideB + SideC) / 2;
             return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC));
         }
-
-        public static Triangle InputTriangle() //ввод значений сторон треугольника
+        /// <summary>
+        /// ввод значений сторон треугольника
+        /// </summary>
+        /// <returns></returns>
+        public static Triangle InputTriangle() //Для обращения к методу из другого класса используется static
         {
             while (true)
             {
@@ -44,8 +47,12 @@ namespace testTask
                 Console.WriteLine("Такого треугольника не существует.");
             }
         }
-
-        public static Triangle CreateTriangle(List<int> values) //создание треугольника по заданным значениям сторон
+        /// <summary>
+        /// создание треугольника по заданным значениям сторон
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        public static Triangle CreateTriangle(List<int> values) //Для обращения к методу из другого класса используется static
         {
             return new Triangle(values[0], values[1], values[2]);
         }

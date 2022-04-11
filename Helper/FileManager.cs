@@ -11,9 +11,9 @@ namespace testTask
         /// Ввод пути к файлу с клавиатуры
         /// </summary>
         /// <returns></returns>
-        private static string InputPath()
+        private static string InputPath() //Для обращения к методу из другого класса используется static
         {
-            Console.WriteLine("Введите путь:");
+            Console.WriteLine("\nВведите путь:");
             var filePath = @"" + Console.ReadLine();
             if (Directory.Exists(filePath))
             {
@@ -29,7 +29,7 @@ namespace testTask
         /// Сохранение фигур в txt файл
         /// </summary>
         /// <param name="shapeList"></param>
-        public static void SaveFile(List<Shape> shapeList)
+        public static void SaveFile(List<Shape> shapeList) //Для обращения к методу из другого класса используется static
         {
             using var tw = new StreamWriter(InputPath() + "testFile.txt", true);
             shapeList.ForEach(item => tw.WriteLine(item));
@@ -38,9 +38,9 @@ namespace testTask
         /// Загрузка фигур из txt файла
         /// </summary>
         /// <param name="shapeList"></param>
-        public static void LoadFile(List<Shape> shapeList)
+        public static List<Shape> LoadFile() //Для обращения к методу из другого класса используется static
         {
-            shapeList.Clear();
+            var shapeList = new List<Shape>();
             using (var sr = new StreamReader(InputPath() + "testFile.txt"))
             {
                 while (true)
@@ -70,6 +70,7 @@ namespace testTask
                     }
                 }
             }
+            return shapeList;
         }
     }
 }
