@@ -7,7 +7,7 @@ namespace testTask
 {
     class App
     {
-        private List<Shape> shapeList = new();
+        public static List<Shape> shapeList = new();
         /// <summary>
         /// Запуск приложения
         /// </summary>
@@ -36,7 +36,7 @@ namespace testTask
                         break;
                     case ConsoleKey.F:
                         Console.WriteLine();
-                        PerimetrAndArea();
+                        ShapeMethods.PerimetrAndArea();
                         break;
                     case ConsoleKey.U:
                         Console.WriteLine();
@@ -48,7 +48,7 @@ namespace testTask
                         break;
                     case ConsoleKey.Z:
                         Console.WriteLine();
-                        OutputShapes();
+                        ShapeMethods.OutputShapes();
                         break;
                     case ConsoleKey.Escape:
                         return;
@@ -58,73 +58,6 @@ namespace testTask
                 }
             }
 
-        }
-        /// <summary>
-        /// Осуществляет выбор фигуры и выводит площадь и периметр выбранной фигуры
-        /// </summary>
-        private void PerimetrAndArea()
-        {
-            Console.WriteLine("Введите цифру: 1 - Квадрат, 2 - Прямоугольник, 3 - Треугольник, 4 - Круг, 5 - Многоугольник, 6 - Общая");
-            switch (Console.ReadKey().Key)
-            {
-                case ConsoleKey.D1:
-                    TotalPerimetr<Square>();
-                    TotalArea<Square>();
-                    break;
-                case ConsoleKey.D2:
-                    TotalPerimetr<Rectangle>();
-                    TotalArea<Rectangle>();
-                    break;
-                case ConsoleKey.D3:
-                    TotalPerimetr<Triangle>();
-                    TotalArea<Triangle>();
-                    break;
-                case ConsoleKey.D4:
-                    TotalPerimetr<Circle>();
-                    TotalArea<Circle>();
-                    break;
-                case ConsoleKey.D5:
-                    TotalPerimetr<Polygon>();
-                    TotalArea<Polygon>();
-                    break;
-                case ConsoleKey.D6:
-                    TotalPerimetr<Shape>();
-                    TotalArea<Shape>();
-                    break;
-                default:
-                    Console.WriteLine("\nВы ввели неверную букву.");
-                    break;
-            }
-        }
-        /// <summary>
-        /// Подсчитывает общий периметр всех фигур по типу
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        private void TotalPerimetr<T>()
-            where T : Shape
-        {
-            Console.WriteLine("\nПериметр: " + Math.Round(shapeList.Where(x => x is T).Sum(x => x.GetPerimetr())),2);
-        }
-        /// <summary>
-        /// Подсчитывает общую площадь всех фигур по типу
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        private void TotalArea<T>()
-            where T : Shape
-        {
-            Console.WriteLine("Площадь: " + Math.Round(shapeList.Where(x => x is T).Sum(x => x.GetArea())),2);
-        }
-        /// <summary>
-        /// Вывод списка фигур
-        /// </summary>
-        private void OutputShapes()
-        {
-            if (shapeList.Count == 0)
-            {
-                Console.WriteLine("Список фигур пуст");
-                return;
-            }
-            shapeList.ForEach(item => Console.WriteLine(item));
         }
     }
 }
