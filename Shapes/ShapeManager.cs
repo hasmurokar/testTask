@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace testTask.Shapes
 {
-    public class ShapeMethods
+    public class ShapeManager
     {
         /// <summary>
         /// Осуществляет выбор фигуры и выводит площадь и периметр выбранной фигуры

@@ -36,7 +36,7 @@ namespace testTask
                         break;
                     case ConsoleKey.F:
                         Console.WriteLine();
-                        ShapeMethods.PerimetrAndArea();
+                        ShapeManager.PerimetrAndArea();
                         break;
                     case ConsoleKey.U:
                         Console.WriteLine();
@@ -48,7 +48,7 @@ namespace testTask
                         break;
                     case ConsoleKey.Z:
                         Console.WriteLine();
-                        ShapeMethods.OutputShapes();
+                        ShapeManager.OutputShapes();
                         break;
                     case ConsoleKey.Escape:
                         return;
