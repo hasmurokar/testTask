@@ -34,7 +34,7 @@ namespace testTask
                         shapeList.Add(Circle.InputCircle());
                         break;
                     case ConsoleKey.F:
-                        GetPerimetrAndArea(shapeList);
+                        shapeList.GetPerimetrAndArea();
                         break;
                     case ConsoleKey.U:
                         shapeList.SaveFile<Shape>();
@@ -52,44 +52,6 @@ namespace testTask
                         Console.WriteLine("\nВы ввели неверную букву.");
                         break;
                 }
-            }
-        }
-        /// <summary>
-        /// Осуществляет выбор фигуры и выводит площадь и периметр выбранной фигуры
-        /// </summary>
-        public static void GetPerimetrAndArea(List<Shape> shapeList) 
-            //В этом методе static нужен потому, что нестатические поля/методы нельзя напрямую вызвать в статических классах
-        {
-            Console.WriteLine("\nВведите цифру: 1 - Квадрат, 2 - Прямоугольник, 3 - Треугольник, 4 - Круг, 5 - Многоугольник, 6 - Общая");
-            switch (Console.ReadKey().Key)
-            {
-                case ConsoleKey.D1:
-                    ShapeManager.TotalPerimetr<Square>(shapeList);
-                    ShapeManager.TotalArea<Square>(shapeList);
-                    break;
-                case ConsoleKey.D2:
-                    ShapeManager.TotalPerimetr<Rectangle>(shapeList);
-                    ShapeManager.TotalArea<Rectangle>(shapeList);
-                    break;
-                case ConsoleKey.D3:
-                    ShapeManager.TotalPerimetr<Triangle>(shapeList);
-                    ShapeManager.TotalArea<Triangle>(shapeList);
-                    break;
-                case ConsoleKey.D4:
-                    ShapeManager.TotalPerimetr<Circle>(shapeList);
-                    ShapeManager.TotalArea<Circle>(shapeList);
-                    break;
-                case ConsoleKey.D5:
-                    ShapeManager.TotalPerimetr<Polygon>(shapeList);
-                    ShapeManager.TotalArea<Polygon>(shapeList);
-                    break;
-                case ConsoleKey.D6:
-                    ShapeManager.TotalPerimetr<Shape>(shapeList);
-                    ShapeManager.TotalArea<Shape>(shapeList);
-                    break;
-                default:
-                    Console.WriteLine("\nВы ввели неверную букву.");
-                    break;
             }
         }
         /// <summary>
