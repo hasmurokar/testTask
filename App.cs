@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using testTask.Helper;
 using testTask.Shapes;
 
 namespace testTask
@@ -36,12 +37,13 @@ namespace testTask
                         GetPerimetrAndArea(shapeList);
                         break;
                     case ConsoleKey.U:
-                        FileManager.SaveFile(shapeList);
+                        shapeList.SaveFile<Shape>();
                         break;
                     case ConsoleKey.O:
-                        shapeList = FileManager.LoadFile();
+                        shapeList.LoadFile();
                         break;
                     case ConsoleKey.Z:
+                        Console.WriteLine();
                         OutputShapes(shapeList);
                         break;
                     case ConsoleKey.Escape:
@@ -62,28 +64,28 @@ namespace testTask
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.D1:
-                    Shape.TotalPerimetr<Square>(shapeList);
-                    Shape.TotalArea<Square>(shapeList);
+                    ShapeManager.TotalPerimetr<Square>(shapeList);
+                    ShapeManager.TotalArea<Square>(shapeList);
                     break;
                 case ConsoleKey.D2:
-                    Shape.TotalPerimetr<Rectangle>(shapeList);
-                    Shape.TotalArea<Rectangle>(shapeList);
+                    ShapeManager.TotalPerimetr<Rectangle>(shapeList);
+                    ShapeManager.TotalArea<Rectangle>(shapeList);
                     break;
                 case ConsoleKey.D3:
-                    Shape.TotalPerimetr<Triangle>(shapeList);
-                    Shape.TotalArea<Triangle>(shapeList);
+                    ShapeManager.TotalPerimetr<Triangle>(shapeList);
+                    ShapeManager.TotalArea<Triangle>(shapeList);
                     break;
                 case ConsoleKey.D4:
-                    Shape.TotalPerimetr<Circle>(shapeList);
-                    Shape.TotalArea<Circle>(shapeList);
+                    ShapeManager.TotalPerimetr<Circle>(shapeList);
+                    ShapeManager.TotalArea<Circle>(shapeList);
                     break;
                 case ConsoleKey.D5:
-                    Shape.TotalPerimetr<Polygon>(shapeList);
-                    Shape.TotalArea<Polygon>(shapeList);
+                    ShapeManager.TotalPerimetr<Polygon>(shapeList);
+                    ShapeManager.TotalArea<Polygon>(shapeList);
                     break;
                 case ConsoleKey.D6:
-                    Shape.TotalPerimetr<Shape>(shapeList);
-                    Shape.TotalArea<Shape>(shapeList);
+                    ShapeManager.TotalPerimetr<Shape>(shapeList);
+                    ShapeManager.TotalArea<Shape>(shapeList);
                     break;
                 default:
                     Console.WriteLine("\nВы ввели неверную букву.");

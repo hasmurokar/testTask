@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using testTask.Shapes;
@@ -29,7 +30,7 @@ namespace testTask
         /// Сохранение фигур в txt файл
         /// </summary>
         /// <param name="shapeList"></param>
-        public static void SaveFile(List<Shape> shapeList) //Для обращения к методу из другого класса используется static
+        public static void SaveFile<T>(this List<Shape> shapeList) //Для обращения к методу из другого класса используется static
         {
             using var tw = new StreamWriter(InputPath() + "testFile.txt", true);
             shapeList.ForEach(item => tw.WriteLine(item));
@@ -38,9 +39,9 @@ namespace testTask
         /// Загрузка фигур из txt файла
         /// </summary>
         /// <param name="shapeList"></param>
-        public static List<Shape> LoadFile() //Для обращения к методу из другого класса используется static
+        public static void LoadFile(this List<Shape> shapeList) //Для обращения к методу из другого класса используется static
         {
-            var shapeList = new List<Shape>();
+            //shapeList = new List<Shape>();
             using (var sr = new StreamReader(InputPath() + "testFile.txt"))
             {
                 while (true)
@@ -70,7 +71,6 @@ namespace testTask
                     }
                 }
             }
-            return shapeList;
         }
     }
 }
