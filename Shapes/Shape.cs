@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace testTask
+﻿namespace testTask
 {
     public abstract class Shape
     {
